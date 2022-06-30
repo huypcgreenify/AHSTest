@@ -5,27 +5,35 @@ import {
   Text,
   ImageBackground,
   TouchableOpacity,
+  Alert,
 } from 'react-native';
-import LogoAHS from '../../assets/svg/LogoAHS.svg';
+import LogoAHS from '../../assets/svg/logoAHS.svg';
+import {mockWelcome} from './mock/welcome';
+const imageBackgroundSourced = require('../../assets/BackGrApp.png');
 
-const WelcomeScreen = props => {
+const WelcomeScreen = (props: any) => {
+  const handleBtnStartWelcome = () => {
+    Alert.alert('Ok');
+  };
+
   return (
     <View style={styles.container}>
       <ImageBackground
         style={styles.image}
-        source={require('../../assets/BackGrApp.png')}
+        source={imageBackgroundSourced} //Khai báo ra biến chứa require (Done)
         resizeMode="cover">
-        <LogoAHS style={styles.logo} width={'89'} height={'150'} />
+        <LogoAHS style={styles.logo} width={89} height={150} />
+        {/**hard code khai báo ra component riêng gọi lại (Done)*/}
         <Text style={styles.textWT}>
-          Welcome To{' '}
-          <Text style={styles.textInWT}>AdelCoHome Services Inc.</Text>
+          {mockWelcome.welcomeBlack}{' '}
+          <Text style={styles.textInWT}>{mockWelcome.welcomePrimary}</Text>
         </Text>
         <TouchableOpacity
           style={styles.touchOpacity}
           onPress={() => {
-            alert('Ok');
+            handleBtnStartWelcome(); //Khai báo hàm riêng, gọi lại (Done)
           }}>
-          <Text style={styles.textInTouchOpacity}>Get Started</Text>
+          <Text style={styles.textInTouchOpacity}>{mockWelcome.start}</Text>
         </TouchableOpacity>
       </ImageBackground>
     </View>
